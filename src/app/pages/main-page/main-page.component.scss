@@ -1,0 +1,15 @@
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+nav.chat-list {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    &.active {
+      background-color: gray;
+    }
+  }
+}

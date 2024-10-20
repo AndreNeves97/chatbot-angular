@@ -1,0 +1,16 @@
+<main>
+  <nav class="chat-list">
+    @for (chat of chats; track chat.id) {
+      <a
+        [routerLink]="['chats', chat.id]"
+        routerLinkActive="active"
+      >
+        {{ chat.name }}
+      </a>
+    }
+  </nav>
+
+  <section class="chat-content">
+    <router-outlet />
+  </section>
+</main>
