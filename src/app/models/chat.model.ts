@@ -1,4 +1,4 @@
-export type ChatModel = {
+export type Chat = {
   name: string;
   id: string;
 };

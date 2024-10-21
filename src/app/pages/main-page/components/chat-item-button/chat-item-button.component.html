@@ -1,0 +1,13 @@
+<a
+  [routerLink]="['chats', chat.id]"
+  routerLinkActive="active"
+  (click)="onClick()"
+  [ngClass]="{'all-messages-read': allMessagesRead}"
+>
+  {{ chat.name }} - 
+
+  @if (lastMessage) {
+    <br>
+    "Última mensagem" - {{ lastMessage.content }}
+  }
+</a>

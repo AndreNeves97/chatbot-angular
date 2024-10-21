@@ -1,12 +1,7 @@
 <main>
   <nav class="chat-list">
     @for (chat of chats; track chat.id) {
-      <a
-        [routerLink]="['chats', chat.id]"
-        routerLinkActive="active"
-      >
-        {{ chat.name }}
-      </a>
+      <app-chat-item-button [chat]="chat"></app-chat-item-button>
     }
   </nav>
 

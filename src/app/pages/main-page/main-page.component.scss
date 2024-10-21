@@ -6,6 +6,9 @@ main {
 nav.chat-list {
   display: flex;
   flex-direction: column;
+  width: 25%;
+  min-width: 200px;
+  max-width: 270px;
 
   a {
     &.active {
