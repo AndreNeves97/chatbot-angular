@@ -5,11 +5,12 @@ import { MessagesService } from '../../../../services/messages/messages.service'
 import { Message } from '../../../../models/message.model';
 import { ChatsService } from '../../../../services/chat/chats.service';
 import { NgClass } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-chat-item-button',
   standalone: true,
-  imports: [NgClass, RouterLink, RouterLinkActive],
+  imports: [NgClass, RouterLink, RouterLinkActive, MatButtonModule],
   templateUrl: './chat-item-button.component.html',
   styleUrl: './chat-item-button.component.scss',
 })

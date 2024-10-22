@@ -1,3 +1,41 @@
-a:not(.all-messages-read) {
-  font-weight: bold;
+a {
+  --mdc-protected-button-container-height: 60px;
+  --mdc-protected-button-container-shape: 16px;
+  --mdc-protected-button-container-color: #f9f9ff;
+
+  width: 100%;
+  justify-content: flex-start;
+
+  &:not(.all-messages-read) {
+    font-weight: bold;
+  }
+
+  &.active {
+    --mdc-protected-button-container-color: #d7e3ff;
+  }
+
+  &:not(.active) {
+    box-shadow: unset;
+  }
+
+  .chat-button-content {
+    display: flex;
+    flex-direction: column;
+
+    .chat-title {
+      font-size: 16px;
+      color: #005cbb;
+    }
+
+    .last-message {
+      height: 24px;
+      font-size: 12px;
+
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+      color: #44474e;
+    }
+  }
 }

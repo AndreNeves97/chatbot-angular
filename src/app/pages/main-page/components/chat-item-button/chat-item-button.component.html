@@ -3,11 +3,20 @@
   routerLinkActive="active"
   (click)="onClick()"
   [ngClass]="{'all-messages-read': allMessagesRead}"
+  mat-raised-button
+  color="secondary"
 >
-  {{ chat.name }} - 
-
-  @if (lastMessage) {
-    <br>
-    "Última mensagem" - {{ lastMessage.content }}
-  }
+  <div class="chat-button-content">
+    <span class="chat-title">{{ chat.name }}</span>
+    
+    <span class="last-message">
+      @if (lastMessage) {
+        {{ lastMessage.content }}
+      } 
+      @else {
+        Entre para iniciar a conversa
+      }
+    </span>
+    
+  </div>
 </a>
