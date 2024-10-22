@@ -26,13 +26,7 @@ export class ChatInputComponent {
       return;
     }
 
-    const sentMessage: Message = {
-      chatId: activeChat.id,
-      content: this.inputMessage,
-      received: false,
-    };
-
-    this.messagesService.sendMessage(sentMessage);
+    this.messagesService.sendMessage(activeChat.id, this.inputMessage);
 
     this.inputMessage = '';
   }

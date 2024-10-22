@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Message } from '../../models/message.model';
 import { filter, Observable, Subject } from 'rxjs';
+import { ChatbotService } from '../chatbot/chatbot.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class MessagesService {
   private lastMessageSubject$ = new Subject<Message>();
   private messages: { [key: string]: Message[] } = {};
 
-  constructor() {
+  constructor(private chatbotService: ChatbotService) {
     console.log({ MessagesService: this });
   }
 
@@ -41,10 +42,28 @@ export class MessagesService {
     this.lastMessageSubject$.next(message);
   }
 
-  public sendMessage(message: Message) {
-    this.onNewMessage(message);
+  public sendMessage(chatId: string, content: string) {
+    const sentMessage: Message = {
+      chatId,
+      content,
+      received: false,
+    };
 
-    // call api
+    this.onNewMessage(sentMessage);
+
+    this.chatbotService.getAnswer(content).subscribe((data) => {
+      this.onReceiveAnswer(chatId, data.content);
+    });
+  }
+
+  private onReceiveAnswer(chatId: string, content: string) {
+    const receivedMessage: Message = {
+      chatId: chatId,
+      content: content,
+      received: true,
+    };
+
+    this.onNewMessage(receivedMessage);
   }
 
   public getLastMessage$(chatId: string): Observable<Message> {
