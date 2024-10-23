@@ -2,6 +2,7 @@ main {
   display: flex;
   flex-direction: row;
   height: 100%;
+  overflow: hidden;
 }
 
 nav.chat-list {
@@ -15,4 +16,9 @@ nav.chat-list {
   max-width: 270px;
 
   background-color: #f9f9ff;
+  border-right: #e3e2e6 1px solid;
+}
+
+section.chat-content {
+  width: 100%;
 }

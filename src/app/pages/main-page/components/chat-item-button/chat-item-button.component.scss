@@ -38,4 +38,10 @@ a {
       color: #44474e;
     }
   }
+
+  ::ng-deep {
+    .mdc-button__label {
+      width: 100%;
+    }
+  }
 }

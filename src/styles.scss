@@ -9,6 +9,16 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mdc-button__label {
-  width: 100%;
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+
+  background-color: #929094;
 }
