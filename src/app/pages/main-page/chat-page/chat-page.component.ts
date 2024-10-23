@@ -32,6 +32,8 @@ export class ChatPageComponent implements OnChanges, AfterViewChecked {
 
   messagesSubscription!: Subscription;
 
+  scrollAfterOnChanges: boolean = false;
+
   constructor(
     private chatsService: ChatsService,
     private messagesService: MessagesService,
@@ -44,10 +46,20 @@ export class ChatPageComponent implements OnChanges, AfterViewChecked {
     this.messages = this.messagesService.getMessages(this.chatId);
 
     this.listenToReceivedMessages();
+    this.scrollAfterOnChanges = true;
   }
 
   ngAfterViewChecked(): void {
+    if (!this.scrollAfterOnChanges) {
+      return;
+    }
+
     this.scrollMessageList(false);
+    setTimeout(() => {
+      this.scrollMessageList(false);
+    });
+
+    this.scrollAfterOnChanges = false;
   }
 
   private listenToReceivedMessages() {
@@ -66,8 +78,11 @@ export class ChatPageComponent implements OnChanges, AfterViewChecked {
     this.messages.push(message);
     this.changeDetector.detectChanges();
 
-    this.scrollMessageList(false);
-    setTimeout(() => {}, 100);
+    const smoothScroll = message.received && message.content.length > 150;
+
+    setTimeout(() => {
+      this.scrollMessageList(smoothScroll);
+    });
   }
 
   private scrollMessageList(smooth: boolean) {
