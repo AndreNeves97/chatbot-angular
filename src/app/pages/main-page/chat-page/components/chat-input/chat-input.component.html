@@ -1,9 +1,10 @@
 
 <form action="" (ngSubmit)="onSubmitForm()">
-  <mat-form-field class="message-input" subscriptSizing="dynamic">
+  <mat-form-field class="message-input" subscriptSizing="dynamic" floatLabel="always">
     <mat-label>Digite sua mensagem</mat-label>
     
     <input 
+      #input
       matInput
       [(ngModel)]="inputMessage"
       name="inputMessage"

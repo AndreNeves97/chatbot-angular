@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChatsService } from '../../../../../services/chat/chats.service';
 import { MessagesService } from '../../../../../services/messages/messages.service';
-import { Message } from '../../../../../models/message.model';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,13 +20,23 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './chat-input.component.html',
   styleUrl: './chat-input.component.scss',
 })
-export class ChatInputComponent {
+export class ChatInputComponent implements OnInit {
+  @ViewChild('input', { static: true })
+  inputElement!: ElementRef<HTMLInputElement>;
+
   inputMessage: string = '';
 
   constructor(
     private chatsService: ChatsService,
     private messagesService: MessagesService
   ) {}
+
+  ngOnInit(): void {
+    this.chatsService.getActiveChat$().subscribe(() => {
+      this.inputElement.nativeElement.focus();
+      this.inputElement.nativeElement.value = '';
+    });
+  }
 
   public onSubmitForm() {
     const activeChat = this.chatsService.getActiveChat();
