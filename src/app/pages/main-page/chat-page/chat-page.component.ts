@@ -1,20 +1,32 @@
-import { ChangeDetectorRef, Component, Input, OnChanges } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  ViewChild,
+} from '@angular/core';
 import { MessagesService } from '../../../services/messages/messages.service';
 import { Subscription } from 'rxjs';
 import { Message } from '../../../models/message.model';
 import { ChatsService } from '../../../services/chat/chats.service';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
+import { ChatMessageComponent } from './components/chat-message/chat-message.component';
 
 @Component({
   selector: 'app-chat-page',
   standalone: true,
-  imports: [ChatInputComponent],
+  imports: [ChatInputComponent, ChatMessageComponent],
   templateUrl: './chat-page.component.html',
   styleUrl: './chat-page.component.scss',
 })
-export class ChatPageComponent implements OnChanges {
+export class ChatPageComponent implements OnChanges, AfterViewChecked {
   @Input()
   chatId: string = '';
+
+  @ViewChild('messageList', { static: true })
+  messageListElement!: ElementRef;
 
   messages: Message[] = [];
 
@@ -28,8 +40,14 @@ export class ChatPageComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.chatsService.setActiveChat(this.chatId);
+
     this.messages = this.messagesService.getMessages(this.chatId);
+
     this.listenToReceivedMessages();
+  }
+
+  ngAfterViewChecked(): void {
+    this.scrollMessageList(false);
   }
 
   private listenToReceivedMessages() {
@@ -47,5 +65,19 @@ export class ChatPageComponent implements OnChanges {
   private onReceiveMessage(message: Message) {
     this.messages.push(message);
     this.changeDetector.detectChanges();
+
+    this.scrollMessageList(false);
+    setTimeout(() => {}, 100);
+  }
+
+  private scrollMessageList(smooth: boolean) {
+    const nativeElement = this.messageListElement.nativeElement;
+
+    const height = nativeElement.scrollHeight;
+
+    nativeElement.scrollTo({
+      top: height,
+      behavior: smooth ? 'smooth' : 'instant',
+    });
   }
 }

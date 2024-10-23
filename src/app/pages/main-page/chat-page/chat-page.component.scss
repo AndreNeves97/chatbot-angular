@@ -1,0 +1,24 @@
+$chat-input-size: 100px;
+
+section.message-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
+  height: calc(100% - $chat-input-size);
+  padding-top: 10px;
+
+  app-chat-message {
+    align-self: flex-end;
+    max-width: 80%;
+
+    &.received {
+      align-self: flex-start;
+    }
+  }
+}
+
+app-chat-input {
+  display: block;
+  height: $chat-input-size;
+}

@@ -1,10 +1,12 @@
-Mensagens do {{ chatId }}:
-
-
-<ul>
+<section class="message-list" #messageList>
   @for (message of messages; track $index) {
-    <li>{{ message.content }} - {{ message.received? 'received' : 'sent'}}</li>
+    <app-chat-message
+      [received]="message.received"
+      [class.received]="message.received"
+    >
+      {{ message.content }}
+    </app-chat-message>
   }
-</ul>
+</section>
 
 <app-chat-input></app-chat-input>

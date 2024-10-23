@@ -1,0 +1,17 @@
+form {
+  background-color: #f9f9ff;
+  display: flex;
+  flex-direction: row;
+  padding: 0 10px;
+  align-items: center;
+  height: 100%;
+
+  .message-input {
+    width: 100%;
+    margin-right: 16px;
+
+    input {
+      width: 100%;
+    }
+  }
+}

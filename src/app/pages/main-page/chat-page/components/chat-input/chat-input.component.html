@@ -1,5 +1,19 @@
 
 <form action="" (ngSubmit)="onSubmitForm()">
-  <input type="text" [(ngModel)]="inputMessage" name="inputMessage" />
-  <button type="submit">Enviar</button>
+  <mat-form-field class="message-input" subscriptSizing="dynamic">
+    <mat-label>Digite sua mensagem</mat-label>
+    
+    <input 
+      matInput
+      [(ngModel)]="inputMessage"
+      name="inputMessage"
+      autocomplete="off"
+    />
+  </mat-form-field>
+
+
+
+  <button mat-fab type="submit">
+    <mat-icon>send</mat-icon>
+  </button>
 </form>
