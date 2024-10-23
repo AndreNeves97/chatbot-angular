@@ -1,3 +1,10 @@
-<p [class.received]="received">
-  <ng-content></ng-content>
+<p [class.received]="message.received">
+
+  @if (message.received) {
+    <markdown>
+      {{ message.content }}
+    </markdown>
+  } @else {
+    {{ message.content }}
+  }
 </p>

@@ -1,10 +1,9 @@
 <section class="message-list" #messageList>
   @for (message of messages; track message.id) {
     <app-chat-message
-      [received]="message.received"
+      [message]="message"
       [class.received]="message.received"
     >
-      {{ message.content }}
     </app-chat-message>
   }
 </section>
