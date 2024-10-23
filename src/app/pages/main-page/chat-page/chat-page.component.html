@@ -1,5 +1,5 @@
 <section class="message-list" #messageList>
-  @for (message of messages; track $index) {
+  @for (message of messages; track message.id) {
     <app-chat-message
       [received]="message.received"
       [class.received]="message.received"

@@ -43,11 +43,7 @@ export class MessagesService {
   }
 
   public sendMessage(chatId: string, content: string) {
-    const sentMessage: Message = {
-      chatId,
-      content,
-      received: false,
-    };
+    const sentMessage: Message = new Message(chatId, content, false);
 
     this.onNewMessage(sentMessage);
 
@@ -57,11 +53,7 @@ export class MessagesService {
   }
 
   private onReceiveAnswer(chatId: string, content: string) {
-    const receivedMessage: Message = {
-      chatId: chatId,
-      content: content,
-      received: true,
-    };
+    const receivedMessage: Message = new Message(chatId, content, true);
 
     this.onNewMessage(receivedMessage);
   }
