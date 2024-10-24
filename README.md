@@ -1,4 +1,4 @@
-# ChatbotAngular
+# Angular Chatbot
 
 This is project is a Chatbot UI built with Angular.
 
