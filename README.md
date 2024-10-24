@@ -1,6 +1,8 @@
 # ChatbotAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
+This is project is a Chatbot UI built with Angular.
+The Chatbot uses the Google Gemini API, through this backend: https://github.com/AndreNeves97/chatbot-nodejs
+
 
 ## Development server
 
